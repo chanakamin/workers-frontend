@@ -1,15 +1,25 @@
 # WorkersFrontend
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.0.6.
+Frontend Side of worker (test) Project. 
+Here You can see all units, workers of each unit, and create / delete workers
 
 ## Development server
+Download the project, and Run `npm install`, 
+Run `ng serve` for a dev server. The application will run on `http://localhost:4200/`.
+To have the project run perfectly, you have to run the server side from here  [Backed Project](https://github.com/chanakamin/workers)  before.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+## Project Structure
 
-## Code scaffolding
+Worker folder includes all worker logic. 
+There is a directory per each component,
+A directory for shared services - unit service & worker service
+And a Directory for types.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Routes
 
+- main route - all units displayed
+- `/:id` - specific unit with all it's workers
+- `/:id/new-worker` - add new worker to a unit
 ## Build
 
 Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
@@ -22,6 +32,10 @@ Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.
 
 Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
 
-## Further help
+## Next Steps
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+- Edit Option
+- Authentication
+- Rxjs options (pipes, subjects)
+- tests
+- css
