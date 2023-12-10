@@ -1,0 +1,26 @@
+<h2>הוספת עובד לחטיבת: {{unit?.name}}</h2>
+<form [formGroup]="newWorkerForm" (ngSubmit)="addNewWorker()">
+    <div>
+        <label for="firstName">שם פרטי:</label>
+        <input id="firstName" type="text" formControlName="firstName">
+    </div>
+    <div>
+        <label for="lastName">שם משפחה: </label>
+        <input id="lastName" type="text" formControlName="lastName">
+    </div>
+    <div>
+        <label for="birthDate">תאריך לידה:</label> 
+        <input id="birthDate" type="date" formControlName="birthDate">
+    </div>
+    <div>
+        <label for="startWorkAt">תאריך תחילת עבודה</label>
+        <input id="startWorkAt" type="date" formControlName="startWorkAt">
+    </div>
+    <div>
+        <label for="workerNumber">מספר זיהוי עובד:</label>
+        <input id="workerNumber" type="text" formControlName="workerNumber">
+    </div>
+    
+    <button type="submit" [disabled]="!newWorkerForm.valid">הוספת עובד</button>
+    <button type="cancel" (click)="cancel()">ביטול</button>
+</form>

@@ -1,0 +1,35 @@
+
+
+<h1>רשימת העובדים של חטיבה: {{unit?.name}}</h1>
+<h4><a routerLink="/">לחזרה לרשימת החטיבות</a></h4>
+
+<table *ngIf="(workers | async)?.length">
+    <thead>
+        <tr>
+            <th>שם עובד</th>
+            <th>שם משפחה</th>
+            <th>תאריך לידה</th>
+            <th>תאריך תחילת עבודה</th>
+            <th>מספר זיהוי</th>
+            <th>פעולות</th>
+        </tr>
+        
+    </thead>
+    <tbody>
+        <tr *ngFor="let worker of workers | async">
+            <td>{{worker.firstName}}</td>
+            <td>{{worker.lastName}}</td> 
+            <td>{{ worker.birthDate }}</td>
+            <td>{{ worker.startWorkAt}} </td>
+            <td> {{worker.workerNumber}} </td>
+            <td> <button (click)="deleteWorker(worker)" >מחיקה</button> </td>
+        </tr>
+    </tbody>
+</table>
+
+<div *ngIf="!(workers | async)?.length">
+    אין עובדים בחטיבה זו
+</div>
+
+
+<button routerLink="new-worker">להוספת עובד חדש</button>
