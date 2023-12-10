@@ -15,25 +15,27 @@ import { catchError } from 'rxjs';
   styleUrl: './new-worker.component.scss'
 })
 export class NewWorkerComponent {
-addNewWorker() {
-  const worker: Worker = this.newWorkerForm.value;
-  this.workersService.createWorker(this.unit?.id as number, worker)
-  .subscribe(() => {
-    this.router.navigate(['/', this.unit?.id]);
-  }, (error) => {
-    console.log(error);
-    alert('קרתה שגיאה במהלך יצירת העובד. בדוק את תקינות הפרמטרים');
-  })
-}
-cancel() {
-  this.router.navigate(['/', this.unit?.id])
-}
+  addNewWorker() {
+    const worker: Worker = this.newWorkerForm.value;
+    this.workersService.createWorker(this.unit?.id as number, worker)
+      .subscribe({
+        next: () => {
+          this.router.navigate(['/', this.unit?.id]);
+        }, error: (error) => {
+          console.log(error);
+          alert('קרתה שגיאה במהלך יצירת העובד. בדוק את תקינות הפרמטרים');
+        }
+      })
+  }
+  cancel() {
+    this.router.navigate(['/', this.unit?.id])
+  }
   unit?: Unit;
 
-  constructor(private workersService: WorkersService, 
+  constructor(private workersService: WorkersService,
     private unitService: UnitsService,
     private router: Router,
-    ) {}
+  ) { }
 
   newWorkerForm: FormGroup = new FormGroup({
     firstName: new FormControl('', [Validators.required]),
@@ -42,9 +44,9 @@ cancel() {
     startWorkAt: new FormControl(new Date().toISOString().slice(0, 10), [Validators.required]),
     birthDate: new FormControl(new Date(2000, 0, 1).toISOString().slice(0, 10), [Validators.required]),
   });
-  
-  @Input() set unitId(unitId: string) { 
+
+  @Input() set unitId(unitId: string) {
     this.unitService.loadUnit(unitId).subscribe(unit => this.unit = unit);
-   }
-  
+  }
+
 }
